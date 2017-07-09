@@ -22,11 +22,9 @@ mintheta=0
 maxtheta=0
 
 
-
-
 def lambida_func():
-    #lambida=0.1033305
-    lambida=0.154
+    lambida=0.1033305
+    #lambida=0.154
     return lambida
 
 #Func
@@ -242,7 +240,7 @@ def LinearWarren(x,y):
 ##    print 'SLOPE ',slope
 ##    print 'Intercepe ', intercept
     Da = lambida_func()*intercept/(2*(np.sin(np.radians( maxtheta/2))-np.sin(np.radians( mintheta/2)) ))
-    print 'D',round(Da,2), 'nm'
+    print 'D:',int(Da), 'nm'
 
     # Create a list of values in the best fit line
     abline_values = [slope * i + intercept for i in x]
