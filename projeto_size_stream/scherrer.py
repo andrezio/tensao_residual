@@ -29,5 +29,6 @@ functions.VoigtCalc(x,y,x1,y1)
 print "### WARREN ###"
 plt.figure(1)
 plt.subplot(1,2,1)
-plt.plot(x,y)
+functions.Plotar(x,y,x1,y1)
+
 functions.warren_averbac(x,y,x1,y1)

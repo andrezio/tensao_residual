@@ -21,6 +21,9 @@ from scipy import stats
 mintheta=0
 maxtheta=0
 
+
+
+
 def lambida_func():
     #lambida=0.1033305
     lambida=0.154
@@ -239,7 +242,7 @@ def LinearWarren(x,y):
 ##    print 'SLOPE ',slope
 ##    print 'Intercepe ', intercept
     Da = lambida_func()*intercept/(2*(np.sin(np.radians( maxtheta/2))-np.sin(np.radians( mintheta/2)) ))
-    print round(Da,2), 'nm'
+    print 'D',round(Da,2), 'nm'
 
     # Create a list of values in the best fit line
     abline_values = [slope * i + intercept for i in x]
@@ -280,9 +283,18 @@ def warren_averbac(x,y,x1,y1,m=20):
     plt.subplot(1,2,2)
     plt.plot(yy[:m],'-o')
     warreny=yy[0:6]
-    pdb.set_trace()
+    #pdb.set_trace()
     yy=LinearWarren(range(len(warreny)),warreny)
 
     #plt.plot(yy[:m],'-o')
-
     plt.show()
+
+
+def Plotar(x,y,x1,y1):
+    y=removerBackground(y)
+    y1=removerBackground(y1)
+
+##    y,y1=centralizarPlot(y,y1)
+
+    plt.plot(x,y)
+    plt.plot(x1,y1)
