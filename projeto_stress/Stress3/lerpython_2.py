@@ -74,7 +74,7 @@ def check(file_name):
             #print linha
             psi= (linha[3])
             psi=float(psi)
-            
+
 
 
         if postion_intensity:
@@ -82,7 +82,7 @@ def check(file_name):
             valuex=(float(linha[0]))
             valuey=(float(linha[1]))
             x.append( valuex)
-            y.append( valuey)  
+            y.append( valuey)
 
         if vetor[1] in line:
             postion_intensity=True
@@ -104,7 +104,7 @@ def getstress(file_name_old):
     x,y=check(file_name_old)
 
 
-    y=background(y)   
+    y=background(y)
 
     plt.plot(x,y,label='data')
 
@@ -151,6 +151,6 @@ getstress(file_name_old)
 #dados={'P_L_PB_1_':'P_L_PB_1_'}
 #files=range(1,11)
 #for i in files:
-#    data='%s%s//%s%s.txt'%( dados['P_L_PB_1_'],str(i),dados['P_L_PB_1_'],str(i)) 
+#    data='%s%s//%s%s.txt'%( dados['P_L_PB_1_'],str(i),dados['P_L_PB_1_'],str(i))
 
 #    getstress( data)

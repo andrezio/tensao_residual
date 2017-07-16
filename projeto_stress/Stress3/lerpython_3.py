@@ -74,21 +74,18 @@ def check(file_name):
 
     for line in datafile:
 
-
         if vetor[0] in line:
             linha= line.split()
             #print linha
             psi= (linha[3])
             psi=float(psi)
-            
-
 
         if postion_intensity:
             linha= line.split()
             valuex=(float(linha[0]))
             valuey=(float(linha[1]))
             x.append( valuex)
-            y.append( valuey)  
+            y.append( valuey)
 
         if vetor[1] in line:
             postion_intensity=True
@@ -111,13 +108,13 @@ def getstress(file_name_old):
 
 
     y=background(y)
-    y=savgol_filter(y,25,9)   
+    y=savgol_filter(y,25,9)
     y=normalizar(y)
 
     plt.plot(x,y,label='data')
 
 
-    
+
 
     y1=removerkalhpa2(y,x)
     y1=savgol_filter(y1,25,9)
