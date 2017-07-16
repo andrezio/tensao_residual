@@ -10,7 +10,7 @@
 #-------------------------------------------------------------------------------
 import numpy as np
 import matplotlib.pyplot as plt
-from lmfit.models import GaussianModel
+from lmfit.models import GaussianModel,LinearModel
 from scipy.signal import savgol_filter
 
 globaltwotheta=[]
@@ -92,6 +92,16 @@ def getstress(file_name_old):
     check(file_name_old)
 
 
+def lenar_calc(x,y):
+    mod = LinearModel()
+    pars = mod.guess(y, x=x)
+    out  = mod.fit(y, pars, x=x)
+
+    print out.best_values
+
+    calc= out.best_values['slope']
+    calc=calc*multi()
+    print calc,multi()
 
 plt.figure(1)
 plt.subplot(2,1,1)
@@ -106,4 +116,6 @@ for i in files:
     getstress(data)
 plt.subplot(2,1,2)
 plt.plot(globalpsi,globaltwotheta,'-o')
-plt.show()
+##plt.show()
+
+lenar_calc(globalpsi,globaltwotheta)
