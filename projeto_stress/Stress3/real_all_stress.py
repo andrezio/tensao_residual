@@ -28,9 +28,39 @@ def multi():
     theta *= (np.pi/180.0)
     theta *=E
     theta /=-1.0*V
-##    print theta #Mpq/deg
-##    print theta/9.8#kg/mm2/deg
-    return theta/9.8
+##    return theta/9.8#kg
+    return theta#Mpa
+
+
+def removekalpha(y,x):
+    novoy=[]
+    lambida2=1.541220
+    lambida1=1.537400
+    deltaL = lambida2 - lambida1
+    deltaL = deltaL/lambida1
+    diferenca=x[1]-x[0]
+
+    for i in range(len(y)):
+        deltasoma = x[1]-x[0]
+        ase= np.tan(np.radians(x[i]/2))*2*deltaL/(diferenca)
+        n=1;
+
+        while(ase>deltasoma):
+            deltasoma=deltasoma+diferenca
+            n+=1
+
+    	try:
+    		yy=y[i]-0.5*y[i-n]
+
+    		if yy<0:yy=(yy+y[i])/3
+
+    		novoy.append(yy)
+    	except:
+    		novoy.append(y[i])
+
+
+
+    return novoy
 
 def background(y):
     minimo=min(y)
@@ -79,6 +109,7 @@ def check(file_name):
     y=background(y)
     y=savgol_filter(y,25,9)
     y=normalizar(y)
+    y=removekalpha(y,x)
     plt.plot(x,y)
     mod = GaussianModel()
     pars = mod.guess(y, x=x)
@@ -98,16 +129,16 @@ def lenar_calc(x,y):
     out  = mod.fit(y, pars, x=x)
 
     print out.best_values
-
+    plt.plot(x,out.best_fit)
     calc= out.best_values['slope']
-    calc=calc*multi()
     print calc,multi()
+    print calc*multi()
 
 plt.figure(1)
 plt.subplot(2,1,1)
 
-file_name_fist = 'P_L_PB_1_//P_L_PB_1_.txt'
-getstress(file_name_fist)
+##file_name_fist = 'P_L_PB_1_//P_L_PB_1_.txt'
+##getstress(file_name_fist)
 
 dados={'P_L_PB_1_':'P_L_PB_1_'}
 files=range(1,11)
@@ -116,6 +147,7 @@ for i in files:
     getstress(data)
 plt.subplot(2,1,2)
 plt.plot(globalpsi,globaltwotheta,'-o')
-##plt.show()
 
-lenar_calc(globalpsi,globaltwotheta)
+
+lenar_calc(globalpsi[:],globaltwotheta[:])
+plt.show()
