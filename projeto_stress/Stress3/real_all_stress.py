@@ -106,6 +106,9 @@ def check(file_name):
     x=np.asarray(x)
     y=np.asarray(y)
 
+
+
+
     y=background(y)
     y=savgol_filter(y,25,9)
     y=normalizar(y)
@@ -116,6 +119,9 @@ def check(file_name):
     out  = mod.fit(y, pars, x=x)
 
     twotheta=out.best_values['center']
+
+    #center mass
+    twotheta=sum(y)/len(y)
     globaltwotheta.append(twotheta)
 
 
@@ -140,10 +146,11 @@ plt.subplot(2,1,1)
 ##file_name_fist = 'P_L_PB_1_//P_L_PB_1_.txt'
 ##getstress(file_name_fist)
 
-dados={'P_L_PB_1_':'P_L_PB_1_'}
+##dados={'P_L_PB_2_':'P_L_PB_2_'}
+dados='P_L_PB_2_'
 files=range(1,11)
 for i in files:
-    data='%s%s//%s%s.txt'%( dados['P_L_PB_1_'],str(i),dados['P_L_PB_1_'],str(i))
+    data='%s%s//%s%s.txt'%( dados,str(i),dados,str(i))
     getstress(data)
 plt.subplot(2,1,2)
 plt.plot(globalpsi,globaltwotheta,'-o')
