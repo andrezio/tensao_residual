@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import scipy.signal
 from math import *
-##import funcoes as func
 import pdb
 import math
 euler=2.718281828459045235360287
@@ -11,17 +10,24 @@ from scipy.interpolate import *
 from numpy import *
 import numpy as np
 
-##x1,y1 = np.loadtxt('outsamplebalzar111.xy', unpack= True)
-##x11,y11 = np.loadtxt('outstandartbalzar111.xy', unpack= True)
+
+##x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
+##x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
 ##
-##x2,y2 = np.loadtxt('outsamplebalzar222.xy', unpack= True)
-##x22,y22 = np.loadtxt('outstandartbalzar222.xy', unpack= True)
+##x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
+##x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
 
-x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
-x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
+x1,y1 = np.loadtxt('outsample.xy', unpack= True)
+x11,y11 = np.loadtxt('outstandart.xy', unpack= True)
 
-x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
-x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
+x2,y2 = np.loadtxt('outsample002.xy', unpack= True)
+x22,y22 = np.loadtxt('outstandart002.xy', unpack= True)
+
+##x1,y1 = np.loadtxt('outsample4tetragonal201.xy', unpack= True)
+##x11,y11 = np.loadtxt('outstandart4tetragonal201.xy', unpack= True)
+##
+##x2,y2 = np.loadtxt('outsample4tetragonal402.xy', unpack= True)
+##x22,y22 = np.loadtxt('outstandart4tetragonal402.xy', unpack= True)
 
 def removerbackground(y):
     maximo=max(y)
