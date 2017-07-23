@@ -44,15 +44,12 @@ def centralizar(y1,y2):
     n=pico1-pico2
     x=np.array([0]*abs(n))
 
-    x1=np.array([0]*5000)
-
-
+    x1=np.array([0]*1000)
 
     if pico1<pico2:
         y1 =np.concatenate((x,y1))
     else:
         y2 =np.concatenate((x,y2))
-
 
     y22 =np.concatenate((x1,y2))
     y22 =np.concatenate((y22,x1))
