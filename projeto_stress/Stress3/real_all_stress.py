@@ -48,7 +48,6 @@ def removekalpha(y,x):
         while(ase>deltasoma):
             deltasoma=deltasoma+diferenca
             n+=1
-
     	try:
     		yy=y[i]-0.5*y[i-n]
 
@@ -57,8 +56,10 @@ def removekalpha(y,x):
     		novoy.append(yy)
     	except:
     		novoy.append(y[i])
-
-
+    plt.plot(y)
+    normalizar(novoy)
+    plt.plot(novoy)
+    plt.show()
 
     return novoy
 
@@ -90,6 +91,7 @@ def check(file_name):
             linha= line.split()
             psi= (linha[3])
             psi=float(psi)
+            psi=np.sin(np.radians(psi))**2
 
             globalpsi.append(psi)
 
@@ -110,7 +112,7 @@ def check(file_name):
 
 
     y=background(y)
-    y=savgol_filter(y,25,9)
+    y=savgol_filter(y,11,9)
     y=normalizar(y)
     y=removekalpha(y,x)
     plt.plot(x,y)
@@ -121,7 +123,7 @@ def check(file_name):
     twotheta=out.best_values['center']
 
     #center mass
-    twotheta=sum(y)/len(y)
+##    twotheta=sum(y)/len(y)
     globaltwotheta.append(twotheta)
 
 
@@ -143,6 +145,7 @@ def lenar_calc(x,y):
 plt.figure(1)
 plt.subplot(2,1,1)
 
+
 ##file_name_fist = 'P_L_PB_1_//P_L_PB_1_.txt'
 ##getstress(file_name_fist)
 
@@ -154,7 +157,8 @@ for i in files:
     getstress(data)
 plt.subplot(2,1,2)
 plt.plot(globalpsi,globaltwotheta,'-o')
-
+plt.xlabel('$\sin ^{2}\omega $')
+plt.ylabel('$2\Theta $')
 
 lenar_calc(globalpsi[:],globaltwotheta[:])
 plt.show()
