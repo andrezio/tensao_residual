@@ -56,10 +56,10 @@ def removekalpha(y,x):
     		novoy.append(yy)
     	except:
     		novoy.append(y[i])
-    plt.plot(y)
-    normalizar(novoy)
-    plt.plot(novoy)
-    plt.show()
+##    plt.plot(y)
+##    normalizar(novoy)
+##    plt.plot(novoy)
+##    plt.show()
 
     return novoy
 
@@ -132,33 +132,42 @@ def getstress(file_name_old):
 
 
 def lenar_calc(x,y):
+    global dados
     mod = LinearModel()
     pars = mod.guess(y, x=x)
     out  = mod.fit(y, pars, x=x)
 
-    print out.best_values
+##    print out.best_values
     plt.plot(x,out.best_fit)
     calc= out.best_values['slope']
-    print calc,multi()
-    print calc*multi()
+##    print calc,multi()
+    print 'Value:',dados, round( calc*multi(),3)
 
 plt.figure(1)
 plt.subplot(2,1,1)
-
+plt.grid()
 
 ##file_name_fist = 'P_L_PB_1_//P_L_PB_1_.txt'
 ##getstress(file_name_fist)
 
 ##dados={'P_L_PB_2_':'P_L_PB_2_'}
-dados='P_L_PB_2_'
+dados='P_L_PB_7_'
+
 files=range(1,11)
 for i in files:
     data='%s%s//%s%s.txt'%( dados,str(i),dados,str(i))
     getstress(data)
 plt.subplot(2,1,2)
 plt.plot(globalpsi,globaltwotheta,'-o')
+
+miny=int(min(globaltwotheta))-2
+maxy=int(max(globaltwotheta))+2
+maxx=round(max(globalpsi),3)+round(max(globalpsi),3)/2
+plt.axis([0,maxx,miny,maxy])
+
+plt.grid()
 plt.xlabel('$\sin ^{2}\omega $')
 plt.ylabel('$2\Theta $')
 
 lenar_calc(globalpsi[:],globaltwotheta[:])
-plt.show()
+##plt.show()
