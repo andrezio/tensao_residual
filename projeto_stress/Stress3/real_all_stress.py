@@ -15,7 +15,7 @@ from scipy.signal import savgol_filter
 
 globaltwotheta=[]
 globalpsi=[]
-
+globalstress=[]
 def multi():
     E=210000
     v=0.3
@@ -141,7 +141,9 @@ def lenar_calc(x,y):
     plt.plot(x,out.best_fit)
     calc= out.best_values['slope']
 ##    print calc,multi()
-    print 'Value:',dados, round( calc*multi(),3)
+    stresslocal=calc*multi()
+    globalstress.append(stresslocal)
+    print 'Value:',dados, round( stresslocal,3)
 
 plt.figure(1)
 plt.subplot(2,1,1)
@@ -151,23 +153,37 @@ plt.grid()
 ##getstress(file_name_fist)
 
 ##dados={'P_L_PB_2_':'P_L_PB_2_'}
-dados='P_L_PB_7_'
-
-files=range(1,11)
-for i in files:
-    data='%s%s//%s%s.txt'%( dados,str(i),dados,str(i))
-    getstress(data)
-plt.subplot(2,1,2)
-plt.plot(globalpsi,globaltwotheta,'-o')
-
-miny=int(min(globaltwotheta))-2
-maxy=int(max(globaltwotheta))+2
-maxx=round(max(globalpsi),3)+round(max(globalpsi),3)/2
-plt.axis([0,maxx,miny,maxy])
-
-plt.grid()
-plt.xlabel('$\sin ^{2}\omega $')
-plt.ylabel('$2\Theta $')
-
-lenar_calc(globalpsi[:],globaltwotheta[:])
+##dados='P_L_PB_1_'
+##
+##files=range(1,11)
+##for i in files:
+##    data='%s%s//%s%s.txt'%( dados,str(i),dados,str(i))
+##    getstress(data)
+##plt.subplot(2,1,2)
+##plt.plot(globalpsi,globaltwotheta,'-o')
+##
+##miny=int(min(globaltwotheta))-2
+##maxy=int(max(globaltwotheta))+2
+##maxx=round(max(globalpsi),3)+round(max(globalpsi),3)/2
+##plt.axis([0,maxx,miny,maxy])
+##
+##plt.grid()
+##plt.xlabel('$\sin ^{2}\omega $')
+##plt.ylabel('$2\Theta $')
+##
+##lenar_calc(globalpsi[:],globaltwotheta[:])
 ##plt.show()
+
+
+for i in range(1,8):
+    dados='P_L_PB_'
+    dados= '%s%s%s' %(dados,i,'_')
+    files=range(1,11)
+    for i in files:
+        data='%s%s//%s%s.txt'%( dados,str(i),dados,str(i))
+        getstress(data)
+    lenar_calc(globalpsi[:],globaltwotheta[:])
+    globaltwotheta=[]
+    globalpsi=[]
+
+print 'mean',np.mean(globalstress)
