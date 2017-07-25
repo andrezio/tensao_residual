@@ -11,17 +11,17 @@ from numpy import *
 import numpy as np
 
 
-x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
-x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
+##x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
+##x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
 
-x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
-x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
+##x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
+##x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
 
-##x1,y1 = np.loadtxt('outsample111otho.xy', unpack= True)
-##x11,y11 = np.loadtxt('outstandart111otho.xy', unpack= True)
-##
-##x2,y2 = np.loadtxt('outsample222otho.xy', unpack= True)
-##x22,y22 = np.loadtxt('outstandart222otho.xy', unpack= True)
+x1,y1 = np.loadtxt('outsample111otho.xy', unpack= True)
+x11,y11 = np.loadtxt('outstandart111otho.xy', unpack= True)
+
+x2,y2 = np.loadtxt('outsample222otho.xy', unpack= True)
+x22,y22 = np.loadtxt('outstandart222otho.xy', unpack= True)
 
 ##x1,y1 = np.loadtxt('outsample4tetragonal201.xy', unpack= True)
 ##x11,y11 = np.loadtxt('outstandart4tetragonal201.xy', unpack= True)
@@ -125,12 +125,13 @@ for i in range(80):
         if i==25:
             print 'microdeformacao: ', abs(out.values['slope']/(2*pi**2))
 
-        slope.append(out.values['slope']/(2*pi**2))
-        intercep.append(out.values['intercept'])
+        slope.append(  np.e*( out.values['slope']/(2*pi**2)))
+        intercep.append( np.e*( out.values['intercept'] ) )
     except:
         pass
 
-
+plt.xlabel('$1/d^2(nm^2)$')
+plt.ylabel("$L_v(nm)$")
 plt.show()
 
 for i in range(len(intercep)):
@@ -139,6 +140,8 @@ for i in range(len(intercep)):
 
 
 plt.plot(intercep,'-o')
+plt.xlabel('$L(nm)$')
+plt.ylabel("$L_v(nm)$")
 plt.show()
 
 plt.plot(slope,'-o')
