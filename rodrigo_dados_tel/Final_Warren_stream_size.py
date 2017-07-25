@@ -11,17 +11,17 @@ from numpy import *
 import numpy as np
 
 
-##x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
-##x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
+x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
+x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
+
+x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
+x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
+
+##x1,y1 = np.loadtxt('outsample111otho.xy', unpack= True)
+##x11,y11 = np.loadtxt('outstandart111otho.xy', unpack= True)
 ##
-##x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
-##x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
-
-x1,y1 = np.loadtxt('outsample.xy', unpack= True)
-x11,y11 = np.loadtxt('outstandart.xy', unpack= True)
-
-x2,y2 = np.loadtxt('outsample002.xy', unpack= True)
-x22,y22 = np.loadtxt('outstandart002.xy', unpack= True)
+##x2,y2 = np.loadtxt('outsample222otho.xy', unpack= True)
+##x22,y22 = np.loadtxt('outstandart222otho.xy', unpack= True)
 
 ##x1,y1 = np.loadtxt('outsample4tetragonal201.xy', unpack= True)
 ##x11,y11 = np.loadtxt('outstandart4tetragonal201.xy', unpack= True)

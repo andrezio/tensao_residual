@@ -10,12 +10,15 @@
 #-------------------------------------------------------------------------------
 
 from CifFile import ReadCif
-cf = ReadCif('u308.cif')
-
+cf = ReadCif('UO2_STAR_246851.cif')
+lambida=1.54
 chave = cf.keys()
 
 
 ##for k,v in cf[chave[0]].items():
 ##    print k
 
-print cf[chave[0]]['_symmetry_equiv_pos_as_xyz']
+value= cf[chave[0]]['_cell_length_a']
+
+value=value.split('(')[0]
+
