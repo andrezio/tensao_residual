@@ -11,23 +11,23 @@ from numpy import *
 import numpy as np
 
 
-##x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
-##x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
+x1,y1 = np.loadtxt('outsample100cubic.xy', unpack= True)
+x11,y11 = np.loadtxt('outstandart100cubic.xy', unpack= True)
 
-##x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
-##x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
+x2,y2 = np.loadtxt('outsample200cubic.xy', unpack= True)
+x22,y22 = np.loadtxt('outstandart200cubic.xy', unpack= True)
 
 x1,y1 = np.loadtxt('outsample111otho.xy', unpack= True)
 x11,y11 = np.loadtxt('outstandart111otho.xy', unpack= True)
 
 x2,y2 = np.loadtxt('outsample222otho.xy', unpack= True)
 x22,y22 = np.loadtxt('outstandart222otho.xy', unpack= True)
-
-##x1,y1 = np.loadtxt('outsample4tetragonal201.xy', unpack= True)
-##x11,y11 = np.loadtxt('outstandart4tetragonal201.xy', unpack= True)
 ##
-##x2,y2 = np.loadtxt('outsample4tetragonal402.xy', unpack= True)
-##x22,y22 = np.loadtxt('outstandart4tetragonal402.xy', unpack= True)
+x1,y1 = np.loadtxt('outsample4tetragonal201.xy', unpack= True)
+x11,y11 = np.loadtxt('outstandart4tetragonal201.xy', unpack= True)
+
+x2,y2 = np.loadtxt('outsample4tetragonal402.xy', unpack= True)
+x22,y22 = np.loadtxt('outstandart4tetragonal402.xy', unpack= True)
 
 def removerbackground(y):
     maximo=max(y)
@@ -110,10 +110,12 @@ slope=[]
 intercep=[]
 mod = LinearModel()
 
+
+
 for i in range(80):
     xxplot=[xx3[i],xx1[i]]
     yyplot=[vetor3[i],vetor1[i]]
-    if i <=10:
+    if  i<=30:
         plt.plot(xxplot,yyplot,'-o')
 
     x=xxplot
@@ -125,13 +127,13 @@ for i in range(80):
         if i==25:
             print 'microdeformacao: ', abs(out.values['slope']/(2*pi**2))
 
-        slope.append(  np.e*( out.values['slope']/(2*pi**2)))
+        slope.append(  ( out.values['slope']/(2*pi**2)))
         intercep.append( np.e*( out.values['intercept'] ) )
     except:
         pass
 
 plt.xlabel('$1/d^2(nm^2)$')
-plt.ylabel("$L_v(nm)$")
+plt.ylabel("$LN(L_v(nm))$")
 plt.show()
 
 for i in range(len(intercep)):
