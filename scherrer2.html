@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="JavaScript">
+<!-- hide this script from old browsers
+function temp(form)
+{
+
+// Converts from degrees to radians.
+Math.radians = function(degrees) {
+  return degrees * Math.PI / 180;
+};
+ 
+// Converts from radians to degrees.
+Math.degrees = function(radians) {
+  return radians * 180 / Math.PI;
+};
+
+
+  var wl = parseFloat(form.wavelength.value);
+  var b = parseFloat(form.beta.value);
+  var theta =parseFloat(form.angle.value);
+  //b = b * (3.14/180)
+  b = Math.radians(b)
+  //theta = (theta/2) *(3.14/180)
+  theta = Math.radians(theta/2)
+  c = (0.94*wl)/(b*Math.cos(theta))
+  d = b/(4*Math.tan(theta))
+  d = d.toFixed(4)
+  form.strain.value = d;
+  c =c.toFixed(1)
+  form.Dp.value = c/10.0;
+
+}
+// done hiding from old browsers </script></head></html>
+
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<center><h2>JavaScript Scherrer Equation</h2></center>
+
+<center>
+<form>
+<table>
+<tbody>
+<tr>
+<td width="130"><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">Wavelength:</span></span></td>
+<td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;"><input maxlength="15" name="wavelength" size="15" value="1.54056" /></span></span></td><td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">Ang</span></span></td>
+</tr>
+<tr>
+<td width="100"><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">Peak Width:</span></span></td>
+<td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;"><input maxlength="15" name="beta" size="15" value="0.3" /></span></span></td><td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">degrees - FWHM convoluted</span></span></td>
+</tr>
+<tr>
+<td width="100"><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">Peak Position:</span></span></td>
+<td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;"><input maxlength="15" name="angle" size="15" value="23.3" /></span></span></td><td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">2Theta degrees</span></span></td>
+</tr>
+<tr>
+<td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;"><input name="calc" onclick="temp(form)" type="BUTTON" value="Calculate" /></span></span></td>
+</tr>
+<tr><td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">Crystallite size: </span></span></td>
+<td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;"><input name="Dp" readonly="" size="15" /></span></span></td><td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">nm</span></span></td>
+</tr>
+<tr><td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;">Lattice Strain: </span></span></td>
+<td><span style="font-family: Georgia,&quot;Times New Roman&quot;,serif;"><span style="font-size: small;"><input name="strain" readonly="" size="15" /></span></span></td>
+</tr>
+</tbody></table>
+</form>
+</center>
+
+<br><br>
+
+<center>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="sc1.png" target="_blank">
+          <img src="sc1.png" alt="Lights" style="width:100%">
+          <div class="caption">
+            <p>Example of FWHM in profile peak</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="sc2.png" target="_blank">
+          <img src="sc2.png" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Example of 2Theta in profile peak </p>
+          </div>
+        </a>
+      </div>
+    </div>
+</div>
+</center>
+
+
+</body>
+</html>
